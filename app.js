@@ -1,6 +1,6 @@
 const campusURL = 'http://10.5.102.146:1234/';
 const globalURL = 'http://147.185.221.212:41897';
-const timeoutDuration = 50; // Adjust this value to change the timeout (in milliseconds)
+const timeoutDuration = 5; // Adjust this value to change the timeout (in milliseconds)
 
 function checkURLAvailability(url, timeout) {
   return new Promise((resolve, reject) => {
