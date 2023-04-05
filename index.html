@@ -4,10 +4,42 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flask App Redirector</title>
+    <title>Redirecting</title>
     <script src="app.js"></script>
 </head>
 <body>
-    <h1>Redirecting...</h1>
+    <header>
+        <h1>TL;DR</h1>
+    </header>
+    
+    <main>
+    
+        
+    
+        <form id="summarize-form">
+        <input type="text" id="url-input" name="url" placeholder="Paste news article URL here">
+        <div class="language-select">
+            <select id="language-select" name="language">
+            <option value="en">English</option>
+            <option value="pt">Portuguese</option>
+            </select>
+            
+        </div>
+    
+        <button type="submit" id="summarize-button">Summarize Article<span class="loading-dots" style="display: none;"></span></button>
+        </form>
+    
+        
+    
+        <section class="output-section">
+        <h2 id="output-title"></h2>
+        <p id="summarized-text"><i></i></p>
+        </section>
+
+    </main>
+    <div class="footer">
+        <p><i>Created by Jared Montierth</i></p>
+      </div>
+        
 </body>
 </html>
