@@ -1,15 +1,7 @@
 const campusURL = 'http://10.5.102.146:1234/';
 const globalURL = 'http://147.185.221.212:41897';
 
-function setDarkMode(isDarkMode) {
-    if (isDarkMode) {
-      document.body.classList.add('dark-mode');
-      document.body.classList.remove('light-mode');
-    } else {
-      document.body.classList.add('light-mode');
-      document.body.classList.remove('dark-mode');
-    }
-   }
+
    
    // Check the user's system preference for dark mode
    const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
@@ -36,4 +28,18 @@ async function checkURLAvailability(url) {
   } else {
     window.location.href = globalURL;
   }
-})();
+})
+
+function setDarkMode(isDarkMode) {
+    if (isDarkMode) {
+      document.body.classList.add('dark-mode');
+      document.body.classList.remove('light-mode');
+    } else {
+      document.body.classList.add('light-mode');
+      document.body.classList.remove('dark-mode');
+    }
+   }
+
+
+
+();
