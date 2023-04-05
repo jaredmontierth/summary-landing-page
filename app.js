@@ -1,34 +1,38 @@
 const campusURL = 'http://10.5.102.146:1234/';
 const globalURL = 'http://147.185.221.212:41897';
 
-const checkImage = 'check.png'; // A small image file you need to add to your Flask app
 const timeoutDuration = 500; // Adjust this value to change the timeout (in milliseconds)
 
-function loadImage(url, timeout) {
+function checkURLAvailability(url, timeout) {
   return new Promise((resolve, reject) => {
-    const timer = setTimeout(() => {
-      img.onerror = img.onload = null;
-      reject(new Error('Request timed out'));
-    }, timeout);
+    const timer = setTimeout(() => reject(new Error('Request timed out')), timeout);
 
-    const img = new Image();
-    img.onerror = () => {
-      clearTimeout(timer);
-      reject(new Error('Image failed to load'));
-    };
-    img.onload = () => {
-      clearTimeout(timer);
-      resolve();
-    };
-    img.src = url;
+    fetch(url, { mode: 'no-cors' })
+      .then(response => {
+        clearTimeout(timer);
+        resolve(response.ok);
+      })
+      .catch(error => {
+        clearTimeout(timer);
+        reject(error);
+      });
   });
 }
 
-(async function redirectToApp() {
+async function redirectToApp() {
   try {
-    await loadImage(`${campusURL}/${checkImage}`, timeoutDuration);
+    await checkURLAvailability(campusURL, timeoutDuration);
     window.location.href = campusURL;
   } catch (error) {
-    window.location.href = globalURL;
+    // If campusURL fails, try the globalURL
+    try {
+      await checkURLAvailability(globalURL, timeoutDuration);
+      window.location.href = globalURL;
+    } catch (globalError) {
+      // Show an error message if both URLs fail
+      document.querySelector('h1').textContent = 'Unable to access both campus and global instances.';
+    }
   }
-})();
+}
+
+redirectToApp();
