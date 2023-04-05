@@ -2,7 +2,7 @@ const campusURL = 'http://10.5.102.146:1234/';
 const globalURL = 'http://147.185.221.212:41897';
 
 const checkImage = 'check.png'; // A small image file you need to add to your Flask app
-const timeoutDuration = 5; // Adjust this value to change the timeout (in milliseconds)
+const timeoutDuration = 500; // Adjust this value to change the timeout (in milliseconds)
 
 function loadImage(url, timeout) {
   return new Promise((resolve, reject) => {
